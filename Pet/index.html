@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Naveed Pet Grooming</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Hero overlay animation */
+    @keyframes shimmer {
+      0% {
+        background-position: -200% 0;
+      }
+
+      100% {
+        background-position: 200% 0;
+      }
+    }
+
+    /* Service card overlay */
+    .service-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover {
+      transform: scale(1.05);
+      z-index: 10;
+    }
+
+    .service-card img {
+      display: block;
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 1rem;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .service-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(182, 155, 46, 0.6);
+      opacity: 0;
+      border-radius: 1rem;
+      transition: opacity 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #222;
+      font-weight: 700;
+      font-size: 1.25rem;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.9);
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .service-card:hover .service-overlay {
+      opacity: 1;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+</head>
+
+<body class="min-h-screen bg-gray-50 text-gray-900">
+  <!-- Header with Logo and Navigation -->
+  <header class="bg-white shadow-md fixed w-full top-0 left-0 z-50">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center max-w-6xl">
+      <!-- Logo -->
+      <a href="#hero" class="flex items-center space-x-2">
+        <img src="images/logo.png" alt="PawSpa Logo" class="w-10 h-10" />
+        <span class="text-2xl font-bold text-yellow-400 select-none">Pet Grooming by Naveed</span>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex space-x-8 font-semibold text-gray-700">
+        <a href="#hero" class="hover:text-yellow-400 transition-colors duration-300">Home</a>
+        <a href="#about" class="hover:text-yellow-400 transition-colors duration-300">About</a>
+        <a href="#services" class="hover:text-yellow-400 transition-colors duration-300">Services</a>
+        <a href="#booking" class="hover:text-yellow-400 transition-colors duration-300">Booking</a>
+        <a href="#contact" class="hover:text-yellow-400 transition-colors duration-300">Contact</a>
+      </nav>
+
+      <!-- Mobile menu button -->
+      <button id="mobile-menu-button" class="md:hidden focus:outline-none" aria-label="Toggle menu">
+        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
+      <a href="#hero" class="block px-6 py-3 border-b border-gray-200 hover:bg-yellow-50">Home</a>
+      <a href="#about" class="block px-6 py-3 border-b border-gray-200 hover:bg-yellow-50">About</a>
+      <a href="#services" class="block px-6 py-3 border-b border-gray-200 hover:bg-yellow-50">Services</a>
+      <a href="#booking" class="block px-6 py-3 border-b border-gray-200 hover:bg-yellow-50">Booking</a>
+      <a href="#contact" class="block px-6 py-3 hover:bg-yellow-50">Contact</a>
+    </nav>
+
+    <script>
+      // Mobile menu toggle
+      const menuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      menuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    </script>
+  </header>
+  <!-- Modern Hero Section -->
+  <section class="bg-white pt-36 pb-20 relative">
+    <div class="container mx-auto px-6 max-w-7xl flex flex-col lg:flex-row items-center justify-between">
+
+      <!-- Left Text Content -->
+      <div class="lg:w-1/2 text-center lg:text-left mb-12 lg:mb-0">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
+          Pamper Your Pets <br class="hidden md:inline" /> With Love & Care
+        </h1>
+        <p class="text-gray-600 text-lg mb-6">
+          Welcome to Pet Grooming By Naveed, the ultimate destination for premium pet care and grooming.
+        </p>
+        <a href="#booking">
+  <button
+    class="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-6 py-3 rounded-full shadow transition">
+    Book Appointment
+  </button>
+</a>
+
+      </div>
+
+      <!-- Right Image with Yellow Blob -->
+      <div class="lg:w-1/2 relative flex justify-center">
+        <!-- Yellow blob shape -->
+        <div
+          class="absolute w-80 h-80 bg-yellow-200 rounded-full -z-10 top-0 lg:top-10 left-0 right-0 mx-auto blur-[2px] opacity-80">
+        </div>
+
+        <!-- Dog image -->
+        <img src="images/heronew.jpg" alt="Happy dog" class="w-full max-w-md object-contain" />
+      </div>
+    </div>
+
+    <!-- Feature Boxes -->
+    <div class="container mx-auto px-6 mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-7xl">
+      <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-md transition">
+        <i class="fas fa-shopping-cart text-3xl text-yellow-400 mb-4"></i>
+        <h3 class="text-xl font-bold mb-2 text-gray-900">Buy our food</h3>
+        <p class="text-gray-600">Dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-md transition">
+        <i class="fas fa-user-md text-3xl text-yellow-400 mb-4"></i>
+        <h3 class="text-xl font-bold mb-2 text-gray-900">Speak to our expert</h3>
+        <p class="text-gray-600">Expert advice for your pet’s health & nutrition.</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-md transition">
+        <i class="fas fa-calendar-check text-3xl text-yellow-400 mb-4"></i>
+        <h3 class="text-xl font-bold mb-2 text-gray-900">Book our grooming services</h3>
+        <p class="text-gray-600">Convenient appointments, gentle care for pets.</p>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- About Us Section -->
+  <section id="about" class="py-20 bg-white">
+    <div class="container mx-auto px-4 max-w-6xl flex flex-col md:flex-row gap-12 items-stretch">
+      <!-- Image container with full height -->
+      <div class="md:flex-1 rounded-3xl shadow-2xl overflow-hidden">
+        <img src="images/image1.jpg" alt="About our grooming services" class="w-full h-full object-cover"
+          style="min-height: 500px;" />
+      </div>
+
+      <!-- Text content -->
+      <div class="md:flex-1 flex flex-col justify-center">
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-8 text-gray-900 flex items-center gap-3">
+          <span class="text-yellow-400 text-5xl">🐶</span>
+          Luxury Care for Precious Pets.
+        </h2>
+        <p class="text-lg text-gray-700 leading-relaxed mb-8">
+          At <strong class="text-yellow-500">Pet Grooming By Naveed</strong>, grooming is more than a service — it’s a
+          passion. With 5+ years of hands-on experience working with all types of breeds, from playful puppies to
+          elegant
+          show dogs and gentle cats, we understand that each pet has unique needs.
+        </p>
+
+        <h3 class="text-2xl font-semibold mb-6 text-yellow-400 flex items-center gap-2">
+          <span class="text-3xl">💠</span> Our grooming philosophy is built on three pillars:
+        </h3>
+
+        <ul class="space-y-5 text-gray-600 text-lg mb-10">
+          <li class="flex items-start gap-3">
+            <span class="text-yellow-400 text-2xl mt-1">🎯</span>
+            <div><strong>Precision</strong> – Every haircut, every style, every touch is done with professional care.
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-yellow-400 text-2xl mt-1">🌿</span>
+            <div><strong>Comfort</strong> – We use gentle techniques to make sure pets enjoy a stress-free session.
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-yellow-400 text-2xl mt-1">❤️</span>
+            <div><strong>Health</strong> – Grooming isn’t only about beauty; it’s about keeping your pets healthy and
+              clean.</div>
+          </li>
+        </ul>
+
+        <p class="text-lg text-gray-700 leading-relaxed mb-10">
+          As a <strong class="text-yellow-500">Certified Groomer Specialist</strong>, we have trained to international
+          standards, learning advanced grooming methods, skin care treatments, and coat management techniques. This
+          ensures your pet receives world-class care every single time.
+        </p>
+
+        <div class="grid grid-cols-3 gap-6 text-center mt-auto">
+          <div>
+            <div class="text-4xl font-extrabold text-yellow-400">5+</div>
+            <div class="text-sm font-medium text-gray-500 tracking-wide">Years</div>
+          </div>
+          <div>
+            <div class="text-4xl font-extrabold text-yellow-400">5000+</div>
+            <div class="text-sm font-medium text-gray-500 tracking-wide">Happy Pets</div>
+          </div>
+          <div>
+            <div class="text-4xl font-extrabold text-yellow-400">100%</div>
+            <div class="text-sm font-medium text-gray-500 tracking-wide">Satisfaction</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Section -->
+  <section id="video" class="py-20 bg-gray-100">
+    <div class="container mx-auto px-4 max-w-4xl text-center">
+      <h2 class="text-4xl font-bold mb-8 text-gray-900">
+        Watch Our Grooming Process
+      </h2>
+      <p class="text-lg text-gray-600 mb-10 max-w-3xl mx-auto">
+        See how we pamper your pets with love and care through our professional grooming techniques.
+      </p>
+      <div class="relative aspect-video max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg">
+        <video controls preload="metadata" class="w-full h-full object-cover rounded-xl">
+          <source src="images/about.mp4" type="video/mp4" />
+          Sorry, your browser doesn't support embedded videos.
+        </video>
+      </div>
+    </div>
+  </section>
+  <!-- Services Section -->
+  <section id="services" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4 max-w-6xl text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Our Premium Grooming Services</h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        We offer a full range of services designed to make your pets look and feel their absolute best
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto px-4">
+      <!-- Card 1 -->
+      <div
+        class="bg-white rounded-xl shadow-md overflow-hidden transform hover:-translate-y-1 hover:shadow-xl transition duration-300">
+        <img src="images/dog-grooming-1.webp" alt="Luxury Full Grooming" class="w-full h-56 object-cover" />
+        <div class="p-6">
+          <h3 class="text-2xl font-semibold text-yellow-500 mb-2">Luxury Full Grooming Package</h3>
+          <p class="text-gray-600">
+            Spa-like treatment: bath, haircut, blow-dry, nail trim, ear & eye cleaning, and styling for royal pets.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div
+        class="bg-white rounded-xl shadow-md overflow-hidden transform hover:-translate-y-1 hover:shadow-xl transition duration-300">
+        <img src="images/bath.webp" alt="Bath & Brush" class="w-full h-56 object-cover" />
+        <div class="p-6">
+          <h3 class="text-2xl font-semibold text-yellow-500 mb-2">Refreshing Bath & Brush</h3>
+          <p class="text-gray-600">
+            Deep cleansing with high-quality shampoos, followed by brushing to leave the coat silky and fresh.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div
+        class="bg-white rounded-xl shadow-md overflow-hidden transform hover:-translate-y-1 hover:shadow-xl transition duration-300">
+        <img src="images/paw.jpg" alt="Paw & Nail Care" class="w-full h-56 object-cover" />
+        <div class="p-6">
+          <h3 class="text-2xl font-semibold text-yellow-500 mb-2">Paw & Nail Care</h3>
+          <p class="text-gray-600">
+            Gentle trimming and soothing paw treatment for healthy, neat, and scratch-free paws.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div
+        class="bg-white rounded-xl shadow-md overflow-hidden transform hover:-translate-y-1 hover:shadow-xl transition duration-300">
+        <img src="images/eyedog.jpg" alt="Ear & Eye Cleaning" class="w-full h-56 object-cover" />
+        <div class="p-6">
+          <h3 class="text-2xl font-semibold text-yellow-500 mb-2">Ear & Eye Cleaning</h3>
+          <p class="text-gray-600">
+            Safe, hygienic cleaning to prevent infections — handled with precision and care.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div
+        class="bg-white rounded-xl shadow-md overflow-hidden transform hover:-translate-y-1 hover:shadow-xl transition duration-300">
+        <img src="images/pexels-tima-miroshnichenko-6131079.jpg" alt="Coat & Skin Treatments" class="w-full h-56 object-cover" />
+        <div class="p-6">
+          <h3 class="text-2xl font-semibold text-yellow-500 mb-2">Coat & Skin Treatments</h3>
+          <p class="text-gray-600">
+            De-shedding, shine-boosting conditioners, flea & tick treatments — for a healthy, glossy coat.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div
+        class="bg-white rounded-xl shadow-md overflow-hidden transform hover:-translate-y-1 hover:shadow-xl transition duration-300">
+        <img src="images/hero.webp" alt="Breed-Specific Styling" class="w-full h-56 object-cover" />
+        <div class="p-6">
+          <h3 class="text-2xl font-semibold text-yellow-500 mb-2">Breed-Specific Styling</h3>
+          <p class="text-gray-600">
+            Customized cuts and styles tailored for each breed’s natural beauty — from Poodles to Persian cats.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Why Choose Us Section -->
+  <section id="why-choose-us" class="py-20 bg-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">
+        Why Choose <span class="text-yellow-400">Pet Grooming by Naveed?</span>
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg text-gray-700">
+        <div class="flex items-start gap-4">
+          <span class="text-yellow-400 text-3xl"><i class="fas fa-star"></i></span>
+          <p><strong>5+ Years of Professional Experience</strong> working with dogs & cats of all breeds</p>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="text-yellow-400 text-3xl"><i class="fas fa-certificate"></i></span>
+          <p><strong>Certified Groomer Specialist</strong> trained to international grooming standards</p>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="text-yellow-400 text-3xl"><i class="fas fa-spa"></i></span>
+          <p><strong>Luxury Grooming Experience</strong> – Spa-like care in a safe, hygienic environment</p>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="text-yellow-400 text-3xl"><i class="fas fa-heart"></i></span>
+          <p><strong>Gentle Handling & Stress-Free Methods</strong> – Perfect for anxious or first-time pets</p>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="text-yellow-400 text-3xl"><i class="fas fa-paw"></i></span>
+          <p><strong>Personalized Services</strong> – Every pet gets a grooming plan suited to them</p>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="text-yellow-400 text-3xl"><i class="fas fa-leaf"></i></span>
+          <p><strong>Premium Products</strong> – Safe, high-quality shampoos, conditioners, and tools</p>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="text-yellow-400 text-3xl"><i class="fas fa-tags"></i></span>
+          <p><strong>Affordable Packages</strong> – Premium care at prices you can trust</p>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="text-yellow-400 text-3xl"><i class="fas fa-user-check"></i></span>
+          <p><strong>Trusted by Pet Parents</strong> – Long-term relationships with happy customers & healthier pets</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Promise Section -->
+  <section id="mission" class="py-20 bg-yellow-50">
+    <div class="container mx-auto px-4 max-w-5xl text-center">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        🐾 Our <span class="text-yellow-400">Mission & Promise</span>
+      </h2>
+      <p class="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
+        Our mission is simple: to make every pet look their best and feel their happiest.
+        Grooming is not just about style — it’s about well-being. Clean coats prevent skin problems,
+        trimmed nails protect paws, and regular grooming builds confidence in pets.
+      </p>
+
+      <div class="bg-white p-8 rounded-xl shadow-lg">
+        <h3 class="text-2xl font-semibold text-yellow-500 mb-4">✨ Our Promise:</h3>
+        <ul class="space-y-4 text-gray-700 text-left max-w-2xl mx-auto text-lg">
+          <li class="flex items-start gap-3">
+            <span class="text-yellow-400 text-2xl"><i class="fas fa-hand-holding-heart"></i></span>
+            <p><strong>To treat your pet like family.</strong></p>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-yellow-400 text-2xl"><i class="fas fa-shield-alt"></i></span>
+            <p><strong>To ensure a safe, hygienic, and stress-free experience.</strong></p>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-yellow-400 text-2xl"><i class="fas fa-smile-beam"></i></span>
+            <p><strong>To deliver results that make both pets and owners smile.</strong></p>
+          </li>
+        </ul>
+      </div>
+
+      <p class="text-xl text-gray-800 font-medium mt-10">
+        Every wagging tail, every purr, and every happy customer is proof of our dedication.
+      </p>
+
+      <div class="mt-10">
+        <a href="#booking"
+          class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-8 rounded-full shadow-md transition">
+          📅 Book Your Premium Grooming Experience Today
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Booking Section -->
+  <section id="booking" class="py-20 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h2 class="text-4xl font-bold mb-8 text-gray-900 text-center">
+        Book an Appointment
+      </h2>
+      <form action="#" method="POST" class="bg-gray-50 p-8 rounded-xl shadow-lg">
+        <div class="mb-6">
+          <label for="name" class="block mb-2 font-semibold text-gray-700">Name</label>
+          <input type="text" id="name" name="name" required
+            class="w-full border border-gray-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+        </div>
+        <div class="mb-6">
+          <label for="email" class="block mb-2 font-semibold text-gray-700">Email</label>
+          <input type="email" id="email" name="email" required
+            class="w-full border border-gray-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+        </div>
+        <div class="mb-6">
+          <label for="service" class="block mb-2 font-semibold text-gray-700">Select Service</label>
+          <select id="service" name="service" required
+            class="w-full border border-gray-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+            <option value="">-- Choose a service --</option>
+            <option value="professional-grooming">Professional Grooming</option>
+            <option value="spa-treatment">Spa Treatment</option>
+            <option value="nail-care">Nail Care</option>
+            <option value="regular-maintenance">Regular Maintenance</option>
+          </select>
+        </div>
+        <div class="mb-6">
+          <label for="date" class="block mb-2 font-semibold text-gray-700">Preferred Date</label>
+          <input type="date" id="date" name="date" required
+            class="w-full border border-gray-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+        </div>
+        <button type="submit"
+          class="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-4 rounded transition-colors duration-300">
+          Submit Booking
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-yellow-400 text-gray-900 py-10 mt-20">
+    <div class="container mx-auto px-4 max-w-6xl flex flex-col md:flex-row justify-between items-center md:items-start">
+
+      <div class="mb-8 md:mb-0 text-center md:text-left md:w-1/3">
+        <p class="font-bold text-xl mb-2">© 2025 Pet Grooming by Naveed</p>
+        <p>All rights reserved.</p>
+      </div>
+
+      <div class="flex space-x-6 mb-8 md:mb-0 md:w-1/3 justify-center">
+        <a href="https://www.facebook.com/share/1CgfTUCzrM/" class="hover:text-gray-800 transition-colors duration-300"
+          aria-label="Facebook">
+          <i class="fab fa-facebook-f text-2xl"></i>
+        </a>
+        <a href="#" class="hover:text-gray-800 transition-colors duration-300" aria-label="Twitter">
+          <i class="fab fa-twitter text-2xl"></i>
+        </a>
+        <a href="https://youtube.com/@pet_grooming_by_naveed?si=wsjTVHthU_1xprc6"
+          class="hover:text-gray-800 transition-colors duration-300" aria-label="YouTube">
+          <i class="fab fa-youtube text-2xl"></i>
+        </a>
+        <a href="https://www.instagram.com/pet_grooming_by_naveed?igsh=Z2VlcmI4MWFkczEy"
+          class="hover:text-gray-800 transition-colors duration-300" aria-label="Instagram">
+          <i class="fab fa-instagram text-2xl"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/naveed-hussain-6b0b9b307?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+          class="hover:text-gray-800 transition-colors duration-300" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in text-2xl"></i>
+        </a>
+        <a href="https://www.tiktok.com/@petgroomingbynaveed?_t=ZS-90cxl3pcOWL&_r=1"
+          class="hover:text-gray-800 transition-colors duration-300" aria-label="TikTok">
+          <i class="fab fa-tiktok text-2xl"></i>
+        </a>
+
+      </div>
+
+      <div class="md:w-1/3 text-center md:text-right">
+        <p class="mb-1 font-semibold">Contact Us</p>
+        <p>Karachi Pakistan</p>
+        <p>Email: naveedhussain6465@gmail.com</p>
+        <p>Phone: 03012296412</p>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+
+</html>
